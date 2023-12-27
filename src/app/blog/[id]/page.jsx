@@ -1,9 +1,84 @@
-import React from 'react'
+import React from "react";
+import styles from "./page.module.css";
+import Image from "next/image";
 
 const BlogPost = () => {
   return (
-    <div>BlogPost</div>
-  )
-}
+    <div className={styles.container}>
+      <div className={styles.top}>
+        <div className={styles.info}>
+          <h1 className={styles.title}>
+            Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+          </h1>
+          <p className={styles.desc}>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque
+            officia temporibus natus hic ab assumenda nostrum, sed rem. Libero
+            vero rem veritatis mollitia optio sint, exercitationem ut maiores!
+            In, excepturi?
+          </p>
+          <div className={styles.author}>
+            <Image
+              src="https://images.pexels.com/photos/13925850/pexels-photo-13925850.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load"
+              alt=""
+              width={40}
+              height={40}
+              className={styles.avatar}
+            />
+            <span className={styles.username}>John Doe</span>
+          </div>
+        </div>
+        <div className={styles.imageContainer}>
+          <Image
+            src="https://images.pexels.com/photos/13925850/pexels-photo-13925850.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load"
+            alt=""
+            fill={true}
+            className={styles.image}
+          />
+        </div>
+      </div>
+      <div className={styles.content}>
+        <p className={styles.text}>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque
+          officia temporibus natus hic ab assumenda nostrum, sed rem. Libero
+          vero rem veritatis mollitia optio sint, exercitationem ut maiores! In,
+          excepturi? Lorem ipsum dolor sit amet consectetur adipisicing elit.
+          Itaque officia temporibus natus hic ab assumenda nostrum, sed rem.
+          Libero vero rem veritatis mollitia optio sint, exercitationem ut
+          maiores! In, excepturi? Lorem ipsum dolor sit amet consectetur
+          adipisicing elit. Itaque officia temporibus natus hic ab assumenda
+          nostrum, sed rem. Libero vero rem veritatis mollitia optio sint,
+          exercitationem ut maiores! In, excepturi? Lorem ipsum dolor sit amet
+          consectetur adipisicing elit. Itaque officia temporibus natus hic ab
+          assumenda nostrum, sed rem. Libero vero rem veritatis mollitia optio
+          sint, exercitationem ut maiores! In, excepturi? Lorem ipsum dolor sit
+          amet consectetur adipisicing elit. Itaque officia temporibus natus hic
+          ab assumenda nostrum, sed rem. Libero vero rem veritatis mollitia
+          optio sint, exercitationem ut maiores! In, excepturi? Lorem ipsum
+          dolor sit amet consectetur adipisicing elit. Itaque officia temporibus
+          natus hic ab assumenda nostrum, sed rem. Libero vero rem veritatis
+          mollitia optio sint, exercitationem ut maiores! In, excepturi? Lorem
+          ipsum dolor sit amet consectetur adipisicing elit. Itaque officia
+          temporibus natus hic ab assumenda nostrum, sed rem. Libero vero rem
+          veritatis mollitia optio sint, exercitationem ut maiores! In,
+          excepturi? Lorem ipsum dolor sit amet consectetur adipisicing elit.
+          Itaque officia temporibus natus hic ab assumenda nostrum, sed rem.
+          Libero vero rem veritatis mollitia optio sint, exercitationem ut
+          maiores! In, excepturi? Lorem ipsum dolor sit amet consectetur
+          adipisicing elit. Itaque officia temporibus natus hic ab assumenda
+          nostrum, sed rem. Libero vero rem veritatis mollitia optio sint,
+          exercitationem ut maiores! In, excepturi? Lorem ipsum dolor sit amet
+          consectetur adipisicing elit. Itaque officia temporibus natus hic ab
+          assumenda nostrum, sed rem. Libero vero rem veritatis mollitia optio
+          sint, exercitationem ut maiores! In, excepturi? Lorem ipsum dolor sit
+          amet consectetur adipisicing elit. Itaque officia temporibus natus hic
+          ab assumenda nostrum, sed rem. Libero vero rem veritatis mollitia
+          optio sint, exercitationem ut maiores! In, excepturi?
+        </p>
+      </div>
+      <br />
+      <br />
+    </div>
+  );
+};
 
-export default BlogPost
+export default BlogPost;
