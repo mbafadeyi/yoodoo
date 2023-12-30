@@ -7,6 +7,8 @@ import { useRouter } from "next/navigation";
 import Image from "next/image";
 
 const Dashboard = () => {
+  //OLD WAY TO FETCH DATA
+
   // const [data, setData] = useState([]);
   // const [err, setErr] = useState(false);
   // const [isLoading, setIsLoading] = useState(false);
@@ -17,33 +19,35 @@ const Dashboard = () => {
   //     const res = await fetch("https://jsonplaceholder.typicode.com/posts", {
   //       cache: "no-store",
   //     });
+
   //     if (!res.ok) {
   //       setErr(true);
   //     }
 
-  //     const data = await res.json();
+  //     const data = await res.json()
 
   //     setData(data);
   //     setIsLoading(false);
   //   };
-  //   getData();
+  //   getData()
   // }, []);
 
   const session = useSession();
 
   const router = useRouter();
 
+  //NEW WAY TO FETCH DATA
   const fetcher = (...args) => fetch(...args).then((res) => res.json());
 
-  const { data, error, isLoading } = useSWR(
-    `api/posts?username=${session?.data?.user.name}`,
+  const { data, mutate, error, isLoading } = useSWR(
+    `/api/posts?username=${session?.data?.user.name}`,
     fetcher,
   );
 
-  console.log(data);
   if (session.status === "loading") {
     return <p>Loading...</p>;
   }
+
   if (session.status === "unauthenticated") {
     router?.push("/dashboard/login");
   }
@@ -63,9 +67,22 @@ const Dashboard = () => {
           desc,
           img,
           content,
-          username: session.user.name,
+          username: session.data.user.name,
         }),
       });
+      mutate();
+      e.target.reset();
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const handleDelete = async (id) => {
+    try {
+      await fetch(`/api/posts/${id}`, {
+        method: "DELETE",
+      });
+      mutate();
     } catch (err) {
       console.log(err);
     }
@@ -83,7 +100,12 @@ const Dashboard = () => {
                     <Image src={post.img} alt="" width={200} height={100} />
                   </div>
                   <h2 className={styles.postTitle}>{post.title}</h2>
-                  <span className={styles.delete}>X</span>
+                  <span
+                    className={styles.delete}
+                    onClick={() => handleDelete(post._id)}
+                  >
+                    X
+                  </span>
                 </div>
               ))}
         </div>

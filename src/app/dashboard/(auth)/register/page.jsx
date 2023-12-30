@@ -1,14 +1,14 @@
 "use client";
-
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import styles from "./page.module.css";
 
 const Register = () => {
-  const [err, setErr] = useState(null);
+  const [error, setError] = useState(null);
 
   const router = useRouter();
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     const name = e.target[0].value;
@@ -18,41 +18,53 @@ const Register = () => {
     try {
       const res = await fetch("/api/auth/register", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name, email, password }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name,
+          email,
+          password,
+        }),
       });
-
       res.status === 201 &&
         router.push("/dashboard/login?success=Account has been created");
     } catch (err) {
-      setErr(true);
+      setError(err);
+      console.log(err);
     }
   };
+
   return (
     <div className={styles.container}>
-      <form action="" className={styles.form} onSubmit={handleSubmit}>
+      <h1 className={styles.title}>Create an Account</h1>
+      <h2 className={styles.subtitle}>Please sign up to see the dashboard.</h2>
+      <form onSubmit={handleSubmit} className={styles.form}>
         <input
           type="text"
           placeholder="Username"
-          className={styles.input}
           required
+          className={styles.input}
         />
         <input
-          type="email"
+          type="text"
           placeholder="Email"
-          className={styles.input}
           required
+          className={styles.input}
         />
         <input
           type="password"
           placeholder="Password"
-          className={styles.input}
           required
+          className={styles.input}
         />
         <button className={styles.button}>Register</button>
-        {err && "Something went wrong!"}
+        {error && "Something went wrong!"}
       </form>
-      <Link href="/dashboard/login">Login with an existing account</Link>
+      <span className={styles.or}>- OR -</span>
+      <Link className={styles.link} href="/dashboard/login">
+        Login with an existing account
+      </Link>
     </div>
   );
 };
