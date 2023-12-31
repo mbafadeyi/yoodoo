@@ -11,7 +11,6 @@ The project was created with the following:
     • NextJs <br/>
     • React <br/>
     • Google Auth <br/>
-    • React <br/>
     • MongoDB <br/>
     • CSS <br/>
 
