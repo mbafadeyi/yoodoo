@@ -1,4 +1,4 @@
-# Job board
+# Yoodoo
  A full-stack website built with NextJs.
 
 ## Introduction
